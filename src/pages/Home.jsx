@@ -6,7 +6,7 @@ export const Home = () => {
 
   return (
     <div className="text-center mt-5">
-      <h1>Proyecto de Lista de Contactos usando ReactRouter, UseReduce y UseContext!!</h1>
+      <h1>Proyecto de Lista de Contactos con ReactRouter, UseReduce y UseContext!!</h1>
 
     </div>
   );
