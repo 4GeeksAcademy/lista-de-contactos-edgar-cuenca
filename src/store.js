@@ -1,3 +1,5 @@
+//store.js
+
 export const initialStore = () => {
   return {
     message: null,

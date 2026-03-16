@@ -1,13 +1,14 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // 1. Importamos Link
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import { deleteContact } from "../actions";
 
-const ContactCard = ({ contact, onEdit }) => {
+const ContactCard = ({ contact }) => { // 2. Ya no necesitamos la prop onEdit
     const { dispatch } = useGlobalReducer();
     const [showConfirm, setShowConfirm] = useState(false);
 
     return (
-        <div className="list-group-item d-flex justify-content-between align-items-center p-3 shadow-sm mb-2 bg-white rounded">
+        <div className="list-group-item d-flex justify-content-between align-items-center p-3 shadow-sm mb-2 bg-white rounded position-relative">
             <div className="d-flex flex-column">
                 <h5 className="mb-1 fw-bold">{contact.name}</h5>
                 <p className="mb-0 text-secondary small">
@@ -22,13 +23,15 @@ const ContactCard = ({ contact, onEdit }) => {
             </div>
 
             <div className="d-flex align-self-start mt-1">
-                <button 
-                    className="btn btn-link text-secondary p-1 me-3" 
-                    onClick={() => onEdit(contact)}
+                {/* 3. Cambiamos el button por un Link con ruta dinámica */}
+                <Link 
+                    to={`/edit/${contact.id}`} 
+                    className="btn btn-link text-secondary p-1 me-3"
                     style={{ fontSize: "0.9rem" }}
                 >
                     <i className="fa-solid fa-pencil"></i>
-                </button>
+                </Link>
+                
                 <button 
                     className="btn btn-link text-secondary p-1" 
                     onClick={() => setShowConfirm(true)}
@@ -40,7 +43,7 @@ const ContactCard = ({ contact, onEdit }) => {
 
             {/* Confirmación de borrar */}
             {showConfirm && (
-                <div className="position-absolute bg-light border p-2 rounded shadow-sm" style={{ right: "60px", zIndex: 10 }}>
+                <div className="position-absolute bg-light border p-2 rounded shadow-sm" style={{ right: "60px", top: "10px", zIndex: 10 }}>
                     <span className="small d-block mb-1 text-dark">¿Eliminar?</span>
                     <div className="d-flex justify-content-end">
                         <button className="btn btn-sm btn-danger me-1 py-0 px-2" onClick={() => deleteContact(contact.id, dispatch)}>Sí</button>
