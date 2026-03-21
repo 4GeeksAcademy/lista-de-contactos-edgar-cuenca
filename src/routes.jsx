@@ -12,8 +12,8 @@ export const router = createBrowserRouter(
       <Route index element={<Home />} />          
       <Route path="contact" element={<Contact />} />   
       <Route path="add" element={<AddContact />} />
-      {/* RUTA DINÁMICA: El :id es la variable que detectará useParams */}
-      <Route path="edit/:id" element={<EditContact />} />    
+      {/* CAMBIO: Usamos AddContact también para editar */}
+      <Route path="edit/:id" element={<AddContact />} />    
     </Route>
   )
 );

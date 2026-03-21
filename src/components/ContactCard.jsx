@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // 1. Importamos Link
+import { Link } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import { deleteContact } from "../actions";
 
-const ContactCard = ({ contact }) => { // 2. Ya no necesitamos la prop onEdit
+const ContactCard = ({ contact }) => {
     const { dispatch } = useGlobalReducer();
     const [showConfirm, setShowConfirm] = useState(false);
 
@@ -23,9 +23,9 @@ const ContactCard = ({ contact }) => { // 2. Ya no necesitamos la prop onEdit
             </div>
 
             <div className="d-flex align-self-start mt-1">
-                {/* 3. Cambiamos el button por un Link con ruta dinámica */}
                 <Link 
                     to={`/edit/${contact.id}`} 
+                    state={contact} 
                     className="btn btn-link text-secondary p-1 me-3"
                     style={{ fontSize: "0.9rem" }}
                 >
